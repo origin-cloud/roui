@@ -1,6 +1,6 @@
 {
   "name": "roui-element",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Roui 是一个基于 Vue 3 的组件库",
   "author": "xiamimi",
   "license": "MIT",
@@ -101,7 +101,7 @@
     "vitest": "^4.0.16",
     "vue-tsc": "^3.1.5"
   },
-    "sideEffects": [
+  "sideEffects": [
     "**/*.css",
     "**/*.scss"
   ]
