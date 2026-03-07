@@ -36,12 +36,7 @@ export default defineConfig({
     rollupOptions: {
       external: [
         'vue',
-        '@fortawesome/fontawesome-svg-core',
-        '@fortawesome/free-solid-svg-icons',
-        '@fortawesome/vue-fontawesome',
-        'async-validator',
-        '@popperjs/core',
-        'axios',
+       
       ],
       output: {
         assetFileNames: (chunkInfo) => {
@@ -50,6 +45,9 @@ export default defineConfig({
           }
           return chunkInfo.name as string
         },
+         globals: {
+          vue: 'Vue'
+        }
       },
     },
   },
