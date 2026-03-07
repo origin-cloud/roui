@@ -69,27 +69,27 @@ export default {
 <template>
   <div class="demo-container">
     <!-- 按钮组件 -->
-    <ROButton type="primary" @click="handleClick">主要按钮</ROButton>
-    <ROButton type="success">成功按钮</ROButton>
-    <ROButton type="warning">警告按钮</ROButton>
-    <ROButton type="danger">危险按钮</ROButton>
+    <RoButton type="primary" @click="handleClick">主要按钮</RoButton>
+    <RoButton type="success">成功按钮</RoButton>
+    <RoButton type="warning">警告按钮</RoButton>
+    <RoButton type="danger">危险按钮</RoButton>
 
     <!-- 输入框组件 -->
-    <ROInput v-model="inputValue" placeholder="请输入内容" clearable />
+    <RoInput v-model="inputValue" placeholder="请输入内容" clearable />
 
     <!-- 下拉选择器 -->
-    <ROSelect v-model="selectedValue" :options="options" placeholder="请选择" />
+    <RoSelect v-model="selectedValue" :options="options" placeholder="请选择" />
 
     <!-- 表单组件 -->
-    <ROForm :model="formData" :rules="formRules" ref="formRef">
-      <ROFormItem label="用户名" prop="username">
-        <ROInput v-model="formData.username" />
-      </ROFormItem>
-      <ROFormItem label="邮箱" prop="email">
-        <ROInput v-model="formData.email" />
-      </ROFormItem>
-      <ROButton type="primary" @click="handleSubmit">提交</ROButton>
-    </ROForm>
+    <RoForm :model="formData" :rules="formRules" ref="formRef">
+      <RoFormItem label="用户名" prop="username">
+        <RoInput v-model="formData.username" />
+      </RoFormItem>
+      <RoFormItem label="邮箱" prop="email">
+        <RoInput v-model="formData.email" />
+      </RoFormItem>
+      <RoButton type="primary" @click="handleSubmit">提交</RoButton>
+    </RoForm>
   </div>
 </template>
 
