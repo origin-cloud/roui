@@ -1,0 +1,124 @@
+.ro-button {
+  --ro-button-font-weight: var(--ro-font-weight-primary);
+  --ro-button-border-color: var(--ro-border-color);
+  --ro-button-bg-color: var(--ro-fill-color-blank);
+  --ro-button-text-color: var(--ro-text-color-regular);
+  --ro-button-disabled-text-color: var(--ro-disabled-text-color);
+  --ro-button-disabled-bg-color: var(--ro-fill-color-blank);
+  --ro-button-disabled-border-color: var(--ro-border-color-light);
+  --ro-button-hover-text-color: var(--ro-color-primary);
+  --ro-button-hover-bg-color: var(--ro-color-primary-light-9);
+  --ro-button-hover-border-color: var(--ro-color-primary-light-7);
+  --ro-button-active-text-color: var(--ro-button-hover-text-color);
+  --ro-button-active-border-color: var(--ro-color-primary);
+  --ro-button-active-bg-color: var(--ro-button-hover-bg-color);
+  --ro-button-outline-color: var(--ro-color-primary-light-5);
+  --ro-button-active-color: var(--ro-text-color-primary);
+}
+.ro-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  height: 32px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--ro-button-text-color);
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: .1s;
+  font-weight: var(--ro-button-font-weight);
+  user-select: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: var(--ro-button-bg-color);
+  border: var(--ro-border);
+  border-color: var(--ro-button-border-color);
+  padding: 8px 15px;
+  font-size: var(--ro-font-size-base);
+  border-radius: var(--ro-border-radius-base);
+  & + & {
+    margin-left: 12px;
+  }
+  &:hover,
+  &:focus {
+    color: var(--ro-button-hover-text-color);
+    border-color: var(--ro-button-hover-border-color);
+    background-color: var(--ro-button-hover-bg-color);
+    outline: none;    
+  }
+  &:active {
+    color: var(--ro-button-active-text-color);
+    border-color: var(--ro-button-active-border-color);
+    background-color: var(--ro-button-active-bg-color);
+    outline: none;
+  }
+  &.is-plain {
+    --ro-button-hover-text-color: var(--ro-color-primary);
+    --ro-button-hover-bg-color: var(--ro-fill-color-blank);
+    --ro-button-hover-border-color: var(--ro-color-primary);    
+  }
+  /*round*/
+  &.is-round {
+    border-radius: var(--ro-border-radius-round);
+  }
+  /*circle*/
+  &.is-circle {
+    border-radius: 50%;
+    padding: 8px;
+  }
+  /*disabled*/
+  &.is-disabled, &.is-disabled:hover, &.is-disabled:focus, 
+  &[disabled], &[disabled]:hover, &[disabled]:focus 
+  {
+    color: var(--ro-button-disabled-text-color);
+    cursor: not-allowed;
+    background-image: none;
+    background-color: var(--ro-button-disabled-bg-color);
+    border-color: var(--ro-button-disabled-border-color);
+  }
+  [class*=ro-icon] + span {
+    margin-left: 6px;
+  }
+}
+@each $val in primary, success, warning, info, danger {
+  .ro-button--#{$val} {
+    --ro-button-text-color: var(--ro-color-white);
+    --ro-button-bg-color: var(--ro-color-#{$val});
+    --ro-button-border-color: var(--ro-color-#{$val});
+    --ro-button-outline-color: var(--ro-color-#{$val}-light-5);
+    --ro-button-active-color: var(--ro-color-#{$val}-dark-2);
+    --ro-button-hover-text-color: var(--ro-color-white);
+    --ro-button-hover-bg-color: var(--ro-color-#{$val}-light-3);
+    --ro-button-hover-border-color: var(--ro-color-#{$val}-light-3);
+    --ro-button-active-bg-color: var(--ro-color-#{$val}-dark-2);
+    --ro-button-active-border-color: var(--ro-color-#{$val}-dark-2);
+    --ro-button-disabled-text-color: var(--ro-color-white);
+    --ro-button-disabled-bg-color: var(--ro-color-#{$val}-light-5);
+    --ro-button-disabled-border-color: var(--ro-color-#{$val}-light-5);
+  }
+  .ro-button--#{$val}.is-plain {
+    --ro-button-text-color: var(--ro-color-#{$val});
+    --ro-button-bg-color: var(--ro-color-#{$val}-light-9);
+    --ro-button-border-color: var(--ro-color-#{$val}-light-5);
+    --ro-button-hover-text-color: var(--ro-color-white);
+    --ro-button-hover-bg-color: var(--ro-color-#{$val});
+    --ro-button-hover-border-color: var(--ro-color-#{$val});
+    --ro-button-active-text-color: var(--ro-color-white);
+  }
+}
+.ro-button--large {
+  --ro-button-size: 40px;
+  height: var(--ro-button-size);
+  padding: 12px 19px;
+  font-size: var(--ro-font-size-base);
+  border-radius: var(--ro-border-radius-base);
+}
+.ro-button--small {
+  --ro-button-size: 24px;
+  height: var(--ro-button-size);
+  padding: 5px 11px;
+  font-size: 12px;
+  border-radius: calc(var(--ro-border-radius-base) - 1px);
+}

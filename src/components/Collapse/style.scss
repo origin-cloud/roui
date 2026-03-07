@@ -1,0 +1,213 @@
+/* Collapse组件样式 - 仿照Element Plus设计 */
+.ro-collapse {
+  --ro-collapse-border-color: var(--ro-border-color-lighter);
+  --ro-collapse-header-height: 48px;
+  --ro-collapse-header-bg-color: var(--ro-fill-color-blank);
+  --ro-collapse-header-text-color: var(--ro-text-color-primary);
+  --ro-collapse-header-font-size: 13px;
+  --ro-collapse-content-bg-color: var(--ro-fill-color-blank);
+  --ro-collapse-content-font-size: 13px;
+  --ro-collapse-content-text-color: var(--ro-text-color-regular);
+  --ro-collapse-disabled-text-color: var(--ro-text-color-placeholder);
+  --ro-collapse-transition-duration: 0.3s;
+}
+
+/* 折叠面板容器 */
+.ro-collapse {
+  border: 1px solid var(--ro-collapse-border-color);
+  border-radius: var(--ro-border-radius-base);
+}
+
+/* 折叠项 */
+.ro-collapse-item {
+  border-bottom: 1px solid var(--ro-collapse-border-color);
+}
+
+.ro-collapse-item:last-child {
+  border-bottom: none;
+}
+
+/* 折叠项头部 */
+.ro-collapse-item__header {
+  display: flex;
+  align-items: center;
+  height: var(--ro-collapse-header-height);
+  line-height: var(--ro-collapse-header-height);
+  background-color: var(--ro-collapse-header-bg-color);
+  color: var(--ro-collapse-header-text-color);
+  cursor: pointer;
+  border-bottom: 1px solid var(--ro-collapse-border-color);
+  font-size: var(--ro-collapse-header-font-size);
+  font-weight: 500;
+  transition: border-bottom-color var(--ro-collapse-transition-duration);
+  padding: 0 15px;
+  outline: none;
+  position: relative;
+}
+
+.ro-collapse-item:last-child .ro-collapse-item__header {
+  border-bottom: none;
+}
+
+.ro-collapse-item__header:hover {
+  background-color: var(--ro-fill-color-light);
+}
+
+/* 箭头图标样式 - 修复旋转问题 */
+.header-angle {
+  margin-left: auto; /* 关键：自动占据左侧剩余空间，把自己推到最右边 */
+  transition: transform var(--ro-collapse-transition-duration) ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center; /* 确保绕中心旋转 */
+}
+
+.header-angle--rotate {
+  transform: rotate(90deg) !important; /* 绕中心旋转90度 */
+}
+
+/* 删除重复的箭头样式 */
+/* 激活状态的头部 */
+.ro-collapse-item.is-active .ro-collapse-item__header {
+  border-bottom-color: transparent;
+}
+
+/* 折叠项内容 */
+.ro-collapse-item__wrap {
+  will-change: height;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.ro-collapse-item__content {
+  padding: 15px;
+  font-size: var(--ro-collapse-content-font-size);
+  color: var(--ro-collapse-content-text-color);
+  line-height: 1.7692307692;
+  background-color: var(--ro-collapse-content-bg-color);
+}
+
+/* 禁用状态 */
+.ro-collapse-item.is-disabled .ro-collapse-item__header {
+  color: var(--ro-collapse-disabled-text-color);
+  cursor: not-allowed;
+  background-image: none;
+}
+
+.ro-collapse-item.is-disabled .ro-collapse-item__header:hover {
+  background-color: var(--ro-collapse-header-bg-color);
+}
+
+/* 手风琴模式样式调整 */
+.ro-collapse--accordion .ro-collapse-item__header {
+  border-bottom: 1px solid var(--ro-collapse-border-color);
+}
+
+/* 动画效果 */
+.ro-collapse-item__wrap-enter-active,
+.ro-collapse-item__wrap-leave-active {
+  transition: height var(--ro-collapse-transition-duration) ease-in-out;
+}
+
+/* 边框变体 */
+.ro-collapse--borderless {
+  border: none;
+}
+
+.ro-collapse--borderless .ro-collapse-item {
+  border-bottom: 1px solid var(--ro-collapse-border-color);
+}
+
+.ro-collapse--borderless .ro-collapse-item:last-child {
+  border-bottom: none;
+}
+
+.ro-collapse--borderless .ro-collapse-item__header {
+  border-bottom: none;
+}
+
+/* 卡片变体 */
+.ro-collapse--card {
+  border: none;
+  border-radius: var(--ro-border-radius-base);
+}
+
+.ro-collapse--card .ro-collapse-item {
+  border-bottom: none;
+  margin-bottom: 8px;
+  border-radius: var(--ro-border-radius-base);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ro-collapse--card .ro-collapse-item__header {
+  border-radius: var(--ro-border-radius-base) var(--ro-border-radius-base) 0 0;
+  border-bottom: 1px solid var(--ro-collapse-border-color);
+}
+
+.ro-collapse--card .ro-collapse-item.is-active .ro-collapse-item__header {
+  border-bottom: 1px solid var(--ro-collapse-border-color);
+}
+
+.ro-collapse--card .ro-collapse-item__content {
+  border-radius: 0 0 var(--ro-border-radius-base) var(--ro-border-radius-base);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .ro-collapse-item__header {
+    padding: 0 12px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 14px;
+  }
+
+  .ro-collapse-item__content {
+    padding: 12px;
+  }
+}
+
+/* 焦点样式 */
+.ro-collapse-item__header:focus {
+  outline: 2px solid var(--ro-color-primary-light-5);
+  outline-offset: -2px;
+}
+
+/* 标题插槽样式 */
+.ro-collapse-item__header .ro-collapse-item__title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* 辅助文本样式 */
+.ro-collapse-item__header .ro-collapse-item__extra {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--ro-text-color-secondary);
+}
+
+/* 加载状态 */
+.ro-collapse-item.is-loading .ro-collapse-item__header {
+  cursor: wait;
+}
+
+.ro-collapse-item.is-loading .ro-collapse-item__arrow::before {
+  content: '⏳';
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: height 0.2s ease-in-out;
+}

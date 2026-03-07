@@ -1,0 +1,34 @@
+:root {
+  --ro-c-brand: var(--ro-color-primary);
+  ---c-brand-light: var(--ro-color-primary-light-3);
+  --vp-c-brand-lighter: var(--ro-color-primary-light-5);
+  --vp-c-brand-dark: var(--ro-color-primary-dark-2);
+  --vp-c-brand-darker: #265f99;
+
+  --component-preview-bg: var(--vp-code-block-bg);
+  --component-preview-soft: var(--vp-code-block-bg-light);
+}
+
+body {
+  color: var(--vp-c-text-1);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: var(--vp-c-text-1);
+}
+/* custom.css */
+html.dark {
+  /* 确保暗色模式下背景不是白色的 */
+  --vp-code-block-bg: #161618;
+}
+
+/* 修复 ElementPlusContainer 内部可能存在的样式层级问题 */
+.vp-doc .demo-preview-container pre {
+  background-color: var(--vp-code-block-bg) !important;
+  margin: 0;
+}

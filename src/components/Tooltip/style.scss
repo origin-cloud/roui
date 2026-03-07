@@ -1,0 +1,305 @@
+.ro-tooltip {
+  position: relative;
+  display: inline-block;
+
+  &__trigger {
+    display: inline-block;
+  }
+
+  &__content {
+    position: absolute;
+    z-index: 2000;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 1.4;
+    min-width: 10px;
+    word-wrap: break-word;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    max-width: 200px;
+    text-align: center;
+
+    // 默认主题（浅色）
+    background-color: #fff;
+    color: #606266;
+    border: 1px solid #ebeef5;
+
+    // 箭头样式
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 6px;
+    }
+
+    // 箭头阴影
+    &::before {
+      border-color: transparent;
+      z-index: -1;
+    }
+
+    // 箭头主体
+    &::after {
+      border-color: transparent;
+    }
+
+    // 根据placement设置箭头位置
+    &[data-popper-placement^='top'] {
+      margin-bottom: 12px;
+
+      &::before,
+      &::after {
+        bottom: -6px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      &::before {
+        border-top-color: #ebeef5;
+        border-bottom-width: 0;
+      }
+
+      &::after {
+        border-top-color: #fff;
+        border-bottom-width: 0;
+        bottom: -5px;
+      }
+    }
+
+    &[data-popper-placement^='bottom'] {
+      margin-top: 12px;
+
+      &::before,
+      &::after {
+        top: -6px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      &::before {
+        border-bottom-color: #ebeef5;
+        border-top-width: 0;
+      }
+
+      &::after {
+        border-bottom-color: #fff;
+        border-top-width: 0;
+        top: -5px;
+      }
+    }
+
+    &[data-popper-placement^='left'] {
+      margin-right: 12px;
+
+      &::before,
+      &::after {
+        right: -6px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &::before {
+        border-left-color: #ebeef5;
+        border-right-width: 0;
+      }
+
+      &::after {
+        border-left-color: #fff;
+        border-right-width: 0;
+        right: -5px;
+      }
+    }
+
+    &[data-popper-placement^='right'] {
+      margin-left: 12px;
+
+      &::before,
+      &::after {
+        left: -6px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &::before {
+        border-right-color: #ebeef5;
+        border-left-width: 0;
+      }
+
+      &::after {
+        border-right-color: #fff;
+        border-left-width: 0;
+        left: -5px;
+      }
+    }
+  }
+
+  // 深色主题
+  &.ro-tooltip--dark &__content {
+    background-color: #303133;
+    color: #fff;
+    border: none;
+
+    &[data-popper-placement^='top']::after {
+      border-top-color: #303133;
+    }
+
+    &[data-popper-placement^='bottom']::after {
+      border-bottom-color: #303133;
+    }
+
+    &[data-popper-placement^='left']::after {
+      border-left-color: #303133;
+    }
+
+    &[data-popper-placement^='right']::after {
+      border-right-color: #303133;
+    }
+  }
+
+  // 成功主题
+  &.ro-tooltip--success &__content {
+    background-color: #f0f9eb;
+    color: #67c23a;
+    border-color: #e1f3d8;
+
+    &[data-popper-placement^='top']::after {
+      border-top-color: #f0f9eb;
+    }
+
+    &[data-popper-placement^='bottom']::after {
+      border-bottom-color: #f0f9eb;
+    }
+
+    &[data-popper-placement^='left']::after {
+      border-left-color: #f0f9eb;
+    }
+
+    &[data-popper-placement^='right']::after {
+      border-right-color: #f0f9eb;
+    }
+  }
+
+  // 警告主题
+  &.ro-tooltip--warning &__content {
+    background-color: #fdf6ec;
+    color: #e6a23c;
+    border-color: #faecd8;
+
+    &[data-popper-placement^='top']::after {
+      border-top-color: #fdf6ec;
+    }
+
+    &[data-popper-placement^='bottom']::after {
+      border-bottom-color: #fdf6ec;
+    }
+
+    &[data-popper-placement^='left']::after {
+      border-left-color: #fdf6ec;
+    }
+
+    &[data-popper-placement^='right']::after {
+      border-right-color: #fdf6ec;
+    }
+  }
+
+  // 危险主题
+  &.ro-tooltip--danger &__content {
+    background-color: #fef0f0;
+    color: #f56c6c;
+    border-color: #fde2e2;
+
+    &[data-popper-placement^='top']::after {
+      border-top-color: #fef0f0;
+    }
+
+    &[data-popper-placement^='bottom']::after {
+      border-bottom-color: #fef0f0;
+    }
+
+    &[data-popper-placement^='left']::after {
+      border-left-color: #fef0f0;
+    }
+
+    &[data-popper-placement^='right']::after {
+      border-right-color: #fef0f0;
+    }
+  }
+
+  // 信息主题
+  &.ro-tooltip--info &__content {
+    background-color: #f4f4f5;
+    color: #909399;
+    border-color: #e9e9eb;
+
+    &[data-popper-placement^='top']::after {
+      border-top-color: #f4f4f5;
+    }
+
+    &[data-popper-placement^='bottom']::after {
+      border-bottom-color: #f4f4f5;
+    }
+
+    &[data-popper-placement^='left']::after {
+      border-left-color: #f4f4f5;
+    }
+
+    &[data-popper-placement^='right']::after {
+      border-right-color: #f4f4f5;
+    }
+  }
+}
+
+// 过渡动画
+.fade-enter-active,
+.fade-leave-active {
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+// 缩放动画
+.scale-enter-active,
+.scale-leave-active {
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+.scale-enter-from,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0);
+}
+
+// Tooltip专用滑动动画 - 避免与Collapse组件冲突
+.tooltip-slide-enter-active,
+.tooltip-slide-leave-active {
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+.tooltip-slide-enter-from {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.tooltip-slide-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+// 自定义动画延迟
+.ro-tooltip__content {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}

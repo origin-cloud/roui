@@ -1,0 +1,237 @@
+// Message 组件样式 - Element UI 风格
+.ro-message {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 380px;
+  max-width: 500px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  background-color: #edf2fc;
+  border-color: #ebeef5;
+  transition:
+    opacity 0.3s,
+    transform 0.4s,
+    top 0.4s;
+  overflow: hidden;
+  padding: 15px 15px 15px 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  z-index: 2000;
+
+  // 消息内容
+  .ro-message__content {
+    flex: 1;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #606266;
+    word-break: break-word;
+  }
+
+  // 关闭按钮
+  .ro-message__close {
+    margin-left: 15px;
+    cursor: pointer;
+    color: #c0c4cc;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s;
+
+    &:hover {
+      color: #909399;
+      background-color: #f2f6fc;
+    }
+
+    &:active {
+      background-color: #e4e7ed;
+    }
+  }
+
+  // 不同类型消息的样式
+  &.ro-message--success {
+    background-color: #f0f9eb;
+    border-color: #e1f3d8;
+
+    .ro-message__content {
+      color: #67c23a;
+    }
+
+    .ro-message__close:hover {
+      background-color: #e1f3d8;
+    }
+  }
+
+  &.ro-message--info {
+    background-color: #edf2fc;
+    border-color: #ebeef5;
+
+    .ro-message__content {
+      color: #606266;
+    }
+
+    .ro-message__close:hover {
+      background-color: #f2f6fc;
+    }
+  }
+
+  &.ro-message--warning {
+    background-color: #fdf6ec;
+    border-color: #faecd8;
+
+    .ro-message__content {
+      color: #e6a23c;
+    }
+
+    .ro-message__close:hover {
+      background-color: #faecd8;
+    }
+  }
+
+  &.ro-message--danger {
+    background-color: #fef0f0;
+    border-color: #fde2e2;
+
+    .ro-message__content {
+      color: #f56c6c;
+    }
+
+    .ro-message__close:hover {
+      background-color: #fde2e2;
+    }
+  }
+
+  // 有关闭按钮时的样式调整
+  &.is-close {
+    padding-right: 40px;
+  }
+}
+
+// 动画效果 - 仿照Element UI的淡入淡出动画
+.fade-up-enter-active,
+.fade-up-leave-active {
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.fade-up-enter-from {
+  opacity: 0;
+  transform: translate(-50%, -20px);
+}
+
+.fade-up-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -20px);
+}
+
+.fade-up-enter-to,
+.fade-up-leave-from {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+// 图标样式（如果使用图标）
+.ro-message__icon {
+  margin-right: 10px;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.ro-message__icon--success {
+    color: #67c23a;
+  }
+
+  &.ro-message__icon--info {
+    color: #909399;
+  }
+
+  &.ro-message__icon--warning {
+    color: #e6a23c;
+  }
+
+  &.ro-message__icon--danger {
+    color: #f56c6c;
+  }
+}
+
+// 消息组（多条消息堆叠）
+.ro-message-group {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .ro-message {
+    min-width: 300px;
+    max-width: calc(100vw - 32px);
+    left: 16px;
+    right: 16px;
+    transform: none;
+    margin: 0 auto;
+
+    &.fade-up-enter-from {
+      transform: translateY(-20px);
+    }
+
+    &.fade-up-leave-to {
+      transform: translateY(-20px);
+    }
+
+    &.fade-up-enter-to,
+    &.fade-up-leave-from {
+      transform: translateY(0);
+    }
+  }
+}
+
+// 消息居中显示（可选）
+.ro-message--center {
+  text-align: center;
+
+  .ro-message__content {
+    justify-content: center;
+  }
+}
+
+// 消息带有图标
+.ro-message--with-icon {
+  padding-left: 20px;
+
+  .ro-message__content {
+    display: flex;
+    align-items: center;
+  }
+}
+
+// 可关闭消息的样式增强
+.ro-message--closable {
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.15);
+  }
+}
+
+// 消息持续时间指示器（进度条）
+.ro-message__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: currentColor;
+  opacity: 0.3;
+  transition: width linear;
+}

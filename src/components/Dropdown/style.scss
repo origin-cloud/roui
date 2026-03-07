@@ -1,0 +1,96 @@
+// src/components/dropdown/style.scss
+
+.ro-dropdown {
+  display: inline-block;
+  position: relative;
+  color: var(--ro-text-color-regular, #606266);
+  font-size: 14px;
+
+  /* ============================================= */
+  /* 🔥 核心修复：覆盖内部 Tooltip 的样式 */
+  /* 因为是在全局 SCSS 中，直接通过类名嵌套即可覆盖 */
+  /* ============================================= */
+  .ro-tooltip__content {
+    // 1. 去掉 Tooltip 的黑色背景，设为透明
+    background: transparent !important;
+
+    // 2. 去掉 Tooltip 的内边距，让 Dropdown Menu 撑满
+    padding: 0 !important;
+
+    // 3. 去掉 Tooltip 自带的边框和阴影
+    border: none !important;
+    box-shadow: none !important;
+
+    // 4. 隐藏 Tooltip 的小箭头
+    &::before,
+    &::after {
+      display: none !important;
+    }
+  }
+
+  /* ============================================= */
+  /* 🎨 Dropdown 菜单样式 (Element Plus 风格) */
+  /* ============================================= */
+  .ro-dropdown__menu {
+    margin: 0;
+    padding: 5px 0;
+    // 菜单自己的白色背景
+    background-color: #ffffff;
+    border: 1px solid #e4e7ed;
+    border-radius: 4px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    list-style: none;
+    min-width: 100px;
+
+    // 确保层级
+    z-index: 10;
+
+    // 占位分割线
+    .divided-placeholder {
+      display: block;
+      height: 1px;
+      margin: 6px 0;
+      background-color: #ebeef5;
+      padding: 0;
+      line-height: 0;
+    }
+
+    // 菜单项
+    .ro-dropdown__item {
+      display: flex;
+      align-items: center;
+      line-height: 36px;
+      padding: 0 16px;
+      margin: 0;
+      font-size: 14px;
+      color: #606266;
+      cursor: pointer;
+      outline: none;
+      white-space: nowrap;
+      transition:
+        background-color 0.2s,
+        color 0.2s;
+
+      &:hover {
+        background-color: #ecf5ff;
+        color: #409eff;
+      }
+
+      &.is-disabled {
+        cursor: not-allowed;
+        color: #a8abb2;
+        background-color: transparent;
+
+        &:hover {
+          color: #a8abb2;
+          background-color: transparent;
+        }
+      }
+
+      &.is-divided {
+        margin-top: 6px;
+        border-top: 1px solid #ebeef5;
+      }
+    }
+  }
+}

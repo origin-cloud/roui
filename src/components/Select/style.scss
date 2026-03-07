@@ -1,0 +1,425 @@
+// Select组件样式 - Element UI风格
+.ro-select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.42857;
+  color: #606266;
+
+  .ro-tooltip__content {
+    // 1. 去掉 Tooltip 的黑色背景，设为透明
+    background: transparent !important;
+
+    // 2. 去掉 Tooltip 的内边距，让 Dropdown Menu 撑满
+    padding: 0 !important;
+
+    // 3. 去掉 Tooltip 自带的边框和阴影
+    border: none !important;
+    box-shadow: none !important;
+
+    // 4. 隐藏 Tooltip 的小箭头
+    &::before,
+    &::after {
+      display: none !important;
+    }
+  }
+  // 禁用状态
+  &.is-disabled {
+    .ro-select__input {
+      background-color: #f5f7fa;
+      border-color: #e4e7ed;
+      color: #c0c4cc;
+      cursor: not-allowed;
+
+      &:hover {
+        border-color: #e4e7ed;
+      }
+    }
+
+    .header-angle {
+      color: #c0c4cc;
+    }
+  }
+
+  // 下拉菜单显示状态
+  &.is-active {
+    .ro-select__input {
+      border-color: #409eff;
+      outline: 0;
+      box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+    }
+
+    .header-angle {
+      transform: rotate(180deg);
+    }
+  }
+
+  // 错误状态
+  &.is-error {
+    .ro-select__input {
+      border-color: #f56c6c;
+
+      &:focus,
+      &:hover {
+        border-color: #f56c6c;
+      }
+    }
+  }
+
+  // 警告状态
+  &.is-warning {
+    .ro-select__input {
+      border-color: #e6a23c;
+
+      &:focus,
+      &:hover {
+        border-color: #e6a23c;
+      }
+    }
+  }
+
+  // 成功状态
+  &.is-success {
+    .ro-select__input {
+      border-color: #67c23a;
+
+      &:focus,
+      &:hover {
+        border-color: #67c23a;
+      }
+    }
+  }
+}
+
+// 输入框容器
+.ro-select__input-wrapper {
+  position: relative;
+}
+
+// 输入框样式
+.ro-select__input {
+  width: 100%;
+  height: 40px;
+  padding: 0 30px 0 15px;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  outline: none;
+  transition:
+    border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
+    box-shadow 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  &:hover {
+    border-color: #c0c4cc;
+  }
+
+  &:focus {
+    border-color: #409eff;
+    outline: 0;
+    box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+  }
+
+  // 只读状态
+  &[readonly] {
+    background-color: #f5f7fa;
+    border-color: #e4e7ed;
+    color: #c0c4cc;
+    cursor: pointer;
+  }
+}
+
+// 下拉箭头图标
+.header-angle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #c0c4cc;
+  font-size: 12px;
+  transition:
+    transform 0.3s,
+    color 0.3s;
+  pointer-events: none;
+
+  &.is-active {
+    transform: translateY(-50%) rotate(180deg);
+    color: #409eff;
+  }
+}
+
+// 下拉菜单容器
+.ro-select__menu {
+  // position: absolute;
+  // z-index: 1001;
+  width: 100%;
+  border: 1px solid #e4e7ed;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  margin: 0;
+  max-height: 274px;
+  overflow-y: auto;
+  padding: 6px 0;
+  list-style: none;
+  margin: 0;
+
+  // 滚动条样式
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #c0c4cc;
+    border-radius: 3px;
+
+    &:hover {
+      background-color: #909399;
+    }
+  }
+}
+
+// 下拉菜单项
+.ro-select__menu-item {
+  position: relative;
+  font-size: 14px;
+  padding: 0 20px;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #606266;
+  height: 34px;
+  line-height: 34px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  // 悬停状态
+  &:hover {
+    background-color: #f5f7fa;
+  }
+
+  // 选中状态
+  &.is-selected {
+    color: #409eff;
+    font-weight: 700;
+    background-color: #f0f9ff;
+
+    &:hover {
+      background-color: #ecf5ff;
+    }
+  }
+
+  // 禁用状态
+  &.is-disabled {
+    color: #c0c4cc;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  // 分组标题
+  &.is-group-title {
+    color: #909399;
+    font-size: 12px;
+    padding-left: 20px;
+    height: 30px;
+    line-height: 30px;
+    cursor: default;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  // 创建新选项
+  &.is-create {
+    color: #409eff;
+    font-weight: 500;
+  }
+}
+
+// 空状态
+.ro-select__empty {
+  padding: 10px 0;
+  margin: 0;
+  text-align: center;
+  color: #c0c4cc;
+  font-size: 14px;
+}
+
+// 加载状态
+.ro-select__loading {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+  animation: rotating 2s linear infinite;
+
+  @keyframes rotating {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+// 尺寸变体
+.ro-select--small {
+  .ro-select__input {
+    height: 32px;
+    padding: 0 25px 0 12px;
+    font-size: 12px;
+  }
+
+  .header-angle {
+    right: 6px;
+    font-size: 10px;
+  }
+
+  .ro-select__menu-item {
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+  }
+}
+
+.ro-select--large {
+  .ro-select__input {
+    height: 48px;
+    padding: 0 35px 0 18px;
+    font-size: 16px;
+  }
+
+  .header-angle {
+    right: 10px;
+    font-size: 14px;
+  }
+
+  .ro-select__menu-item {
+    height: 38px;
+    line-height: 38px;
+    font-size: 16px;
+  }
+}
+
+// 多选样式
+.ro-select--multiple {
+  .ro-select__input {
+    height: auto;
+    min-height: 40px;
+    padding: 0 30px 0 8px;
+  }
+
+  // 标签样式
+  .ro-select__tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .ro-select__tag {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    line-height: 22px;
+    font-size: 12px;
+    color: #409eff;
+    background-color: #ecf5ff;
+    border: 1px solid #d9ecff;
+    border-radius: 4px;
+    margin: 3px 0 3px 6px;
+    padding: 0 8px;
+
+    .ro-select__tag-close {
+      margin-left: 5px;
+      color: #409eff;
+      cursor: pointer;
+      font-size: 12px;
+
+      &:hover {
+        color: #66b1ff;
+      }
+    }
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .ro-select {
+    font-size: 16px; // 移动端字体放大
+
+    .ro-select__input {
+      height: 44px; // 移动端高度增加
+    }
+  }
+}
+
+// 暗色主题支持
+@media (prefers-color-scheme: dark) {
+  .ro-select {
+    color: #e5e7eb;
+
+    .ro-select__input {
+      background-color: #1f2937;
+      border-color: #374151;
+      color: #e5e7eb;
+
+      &:hover {
+        border-color: #4b5563;
+      }
+
+      &:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+      }
+    }
+
+    .ro-select__menu {
+      background-color: #1f2937;
+      border-color: #374151;
+    }
+
+    .ro-select__menu-item {
+      color: #e5e7eb;
+
+      &:hover {
+        background-color: #374151;
+      }
+
+      &.is-selected {
+        color: #3b82f6;
+        background-color: #1e3a5f;
+      }
+    }
+  }
+}
+
+// 过渡动画
+.ro-select-enter-active,
+.ro-select-leave-active {
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+.ro-select-enter-from,
+.ro-select-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}

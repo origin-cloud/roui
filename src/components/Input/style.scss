@@ -1,0 +1,336 @@
+// Input组件样式 - 仿Element UI设计风格
+.ro-input {
+  position: relative;
+  font-size: 14px;
+  display: inline-flex;
+  width: 100%;
+  line-height: normal;
+  box-sizing: border-box;
+  vertical-align: middle;
+
+  // 基础输入框样式
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    position: relative;
+  }
+
+  &__inner {
+    -webkit-appearance: none;
+    background-color: #fff;
+    background-image: none;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    height: 40px;
+    line-height: 40px;
+    outline: none;
+    padding: 0 15px;
+    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    width: 100%;
+
+    &::placeholder {
+      color: #c0c4cc;
+    }
+
+    &:hover {
+      border-color: #c0c4cc;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #409eff;
+      box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+    }
+  }
+
+  // 不同尺寸
+  &--small &__inner {
+    height: 32px;
+    line-height: 32px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  &--large &__inner {
+    height: 48px;
+    line-height: 48px;
+    padding: 0 20px;
+    font-size: 16px;
+  }
+
+  // 禁用状态
+  &.is-disabled &__inner {
+    background-color: #f5f7fa;
+    border-color: #e4e7ed;
+    color: #c0c4cc;
+    cursor: not-allowed;
+
+    &:hover {
+      border-color: #e4e7ed;
+    }
+  }
+
+  // 聚焦状态
+  &.is-focus &__inner {
+    border-color: #409eff;
+    box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+  }
+
+  // 前置/后置插槽
+  &__prepend,
+  &__append {
+    background-color: #f5f7fa;
+    color: #909399;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    padding: 0 20px;
+    font-size: 14px;
+    min-height: 40px;
+    box-sizing: border-box;
+  }
+
+  &__prepend {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &__append {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  // 前缀/后缀图标
+  &__prefix,
+  &__suffix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c0c4cc;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.3s;
+  }
+
+  &__prefix {
+    left: 5px;
+    width: 25px;
+  }
+
+  &__suffix {
+    right: 5px;
+    width: 25px;
+  }
+
+  // 带前缀/后缀的输入框内边距调整
+  &.is-prefix &__inner {
+    padding-left: 30px;
+  }
+
+  &.is-suffix &__inner {
+    padding-right: 30px;
+  }
+
+  // 带前置/后置的输入框样式
+  &.is-prepend,
+  &.is-append {
+    display: inline-flex;
+  }
+
+  &.is-prepend &__inner {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &.is-append &__inner {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  // 清除按钮
+  &__clear {
+    cursor: pointer;
+    color: #c0c4cc;
+    transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    &:hover {
+      color: #909399;
+    }
+  }
+
+  // 密码显示切换按钮
+  &__password {
+    cursor: pointer;
+    color: #c0c4cc;
+    transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    &:hover {
+      color: #409eff;
+    }
+  }
+
+  // 文本域样式
+  .ro-textarea__wrapper {
+    display: block;
+    resize: vertical;
+    padding: 5px 15px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: inherit;
+    color: #606266;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    min-height: 60px;
+
+    &::placeholder {
+      color: #c0c4cc;
+    }
+
+    &:hover {
+      border-color: #c0c4cc;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #409eff;
+      box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+    }
+  }
+
+  // 错误状态
+  &.is-error &__inner,
+  &.is-error .ro-textarea__wrapper {
+    border-color: #f56c6c;
+
+    &:focus {
+      border-color: #f56c6c;
+      box-shadow: 0 0 0 2px rgba(245, 108, 108, 0.2);
+    }
+  }
+
+  // 成功状态
+  &.is-success &__inner,
+  &.is-success .ro-textarea__wrapper {
+    border-color: #67c23a;
+
+    &:focus {
+      border-color: #67c23a;
+      box-shadow: 0 0 0 2px rgba(103, 194, 58, 0.2);
+    }
+  }
+
+  // 警告状态
+  &.is-warning &__inner,
+  &.is-warning .ro-textarea__wrapper {
+    border-color: #e6a23c;
+
+    &:focus {
+      border-color: #e6a23c;
+      box-shadow: 0 0 0 2px rgba(230, 162, 60, 0.2);
+    }
+  }
+
+  // 输入框组（多个输入框组合）
+  &-group {
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+
+    & > .ro-input__inner {
+      border-radius: 0;
+
+      &:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+    }
+  }
+
+  // 图标按钮样式
+  .ro-icon {
+    font-size: 14px;
+  }
+
+  // 过渡动画
+  &-enter-active,
+  &-leave-active {
+    transition: all 0.3s;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .ro-input {
+    width: 100%;
+
+    &__inner {
+      font-size: 16px; // 防止iOS缩放
+    }
+  }
+}
+
+// 暗色主题支持（可选）
+@media (prefers-color-scheme: dark) {
+  .ro-input {
+    &__inner {
+      background-color: #2d2d2d;
+      border-color: #4a4a4a;
+      color: #e0e0e0;
+
+      &::placeholder {
+        color: #888;
+      }
+
+      &:hover {
+        border-color: #666;
+      }
+
+      &:focus {
+        border-color: #409eff;
+        box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.3);
+      }
+    }
+
+    &.is-disabled &__inner {
+      background-color: #3a3a3a;
+      border-color: #4a4a4a;
+      color: #666;
+    }
+
+    &__prepend,
+    &__append {
+      background-color: #3a3a3a;
+      border-color: #4a4a4a;
+      color: #aaa;
+    }
+  }
+}

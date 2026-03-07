@@ -1,0 +1,87 @@
+/* vars.scss */
+@use "sass:color";
+/* 1. 定义 Sass 变量 (Map 类型) - 注意：这里用 $ 开头，且不用 var() */
+$colors: (
+  'primary': #409eff,
+  'success': #67c23a,
+  'warning': #e6a23c,
+  'danger':  #f56c6c,
+  'info':    #909399
+);
+
+:root {
+  /* --- 2. 循环生成颜色变量 --- */
+  
+  /* @each 遍历颜色 Map */
+   @each $key, $val in $colors {
+    /* 生成主色: --ro-color-primary: #409eff */
+    --ro-color-#{$key}: #{$val};
+
+    /* 生成浅色系列 (light-3, light-5, light-7) */
+    @each $i in (3, 5, 7) {
+      /* 使用 color.mix 替代 mix 函数 */
+      --ro-color-#{$key}-light-#{$i}: #{color.mix(#fff, $val, $i * 10%)};
+    }
+
+    /* 生成其他固定变体 */
+    --ro-color-#{$key}-light-8: #{color.mix(#fff, $val, 80%)};
+    --ro-color-#{$key}-dark-2: #{color.mix(#000, $val, 20%)};
+  }
+  /* --- 3. 下面是静态的基础变量 (不需要改) --- */
+  --ro-color-white: #ffffff;
+  --ro-color-black: #000000;
+  
+  --ro-bg-color: #ffffff;
+  --ro-bg-color-page: #f2f3f5;
+  --ro-bg-color-overlay: #ffffff;
+  
+  --ro-text-color-primary: #303133;
+  --ro-text-color-regular: #606266;
+  --ro-text-color-secondary: #909399;
+  --ro-text-color-placeholder: #a8abb2;
+  --ro-text-color-disabled: #c0c4cc;
+  
+  --ro-border-color: #dcdfe6;
+  --ro-border-color-light: #e4e7ed;
+  --ro-border-color-lighter: #ebeef5;
+  --ro-border-color-extra-light: #f2f6fc;
+  --ro-border-color-dark: #d4d7de;
+  --ro-border-color-darker: #cdd0d6;
+  
+  --ro-fill-color: #f0f2f5;
+  --ro-fill-color-light: #f5f7fa;
+  --ro-fill-color-lighter: #fafafa;
+  --ro-fill-color-extra-light: #fafcff;
+  --ro-fill-color-dark: #ebedf0;
+  --ro-fill-color-darker: #e6e8eb;
+  --ro-fill-color-blank: #ffffff;
+
+  /* border */
+  --ro-border-width: 1px;
+  --ro-border-style: solid;
+  --ro-border-color-hover: var(--ro-text-color-disabled);
+  --ro-border: var(--ro-border-width) var(--ro-border-style) var(--ro-border-color);
+  --ro-border-radius-base: 4px;
+  --ro-border-radius-small: 2px;
+  --ro-border-radius-round: 20px;
+  --ro-border-radius-circle: 100%;
+
+  /* font */
+  --ro-font-size-extra-large: 20px;
+  --ro-font-size-large: 18px;
+  --ro-font-size-medium: 16px;
+  --ro-font-size-base: 14px;
+  --ro-font-size-small: 13px;
+  --ro-font-size-extra-small: 12px;
+  --ro-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '\5fae\8f6f\96c5\9ed1', Arial, sans-serif;
+  --ro-font-weight-primary: 500;
+
+  /* disabled */
+  --ro-disabled-bg-color: var(--ro-fill-color-light);
+  --ro-disabled-text-color: var(--ro-text-color-placeholder);
+  --ro-disabled-border-color: var(--ro-border-color-light);
+  
+  /* animation */
+  --ro-transition-duration: 0.3s;
+  --ro-transition-duration-fast: 0.2s;
+}

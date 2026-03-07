@@ -1,0 +1,297 @@
+// Form组件样式 - 仿照Element UI设计风格
+
+.ro-form {
+  // 表单基础样式
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #606266;
+
+  // 表单布局
+  &.ro-form--inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .ro-form-item {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 10px;
+
+      .ro-form-item__label {
+        flex: none;
+        margin-right: 10px;
+      }
+
+      .ro-form-item__content {
+        flex: 1;
+        display: inline-flex;
+        align-items: center;
+      }
+    }
+  }
+
+  &.ro-form--label-left {
+    .ro-form-item__label {
+      text-align: left;
+    }
+  }
+
+  &.ro-form--label-top {
+    .ro-form-item {
+      display: block;
+
+      .ro-form-item__label {
+        display: block;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
+
+.ro-form-item {
+  margin-bottom: 22px;
+  display: flex;
+  align-items: flex-start;
+
+  // 表单标签样式
+  .ro-form-item__label {
+    text-align: right;
+    vertical-align: middle;
+    float: left;
+    font-size: 14px;
+    color: #606266;
+    line-height: 40px;
+    padding: 0 12px 0 0;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    width: auto;
+
+    // 必填项标记
+    &.is-required::before {
+      content: '*';
+      color: #f56c6c;
+      margin-right: 4px;
+    }
+  }
+
+  // 表单内容区域
+  .ro-form-item__content {
+    line-height: 40px;
+    position: relative;
+    font-size: 14px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    // 表单控件样式
+    .ro-input,
+    .ro-select,
+    .ro-textarea {
+      width: 100%;
+    }
+  }
+
+  // 错误状态
+  &.is-error {
+    .ro-form-item__content {
+      .ro-input__inner,
+      .ro-select__inner,
+      .ro-textarea__inner {
+        border-color: #f56c6c;
+
+        &:focus {
+          border-color: #f56c6c;
+          box-shadow: 0 0 0 2px rgba(245, 108, 108, 0.2);
+        }
+      }
+    }
+
+    .ro-form-item__error-msg {
+      color: #f56c6c;
+      font-size: 12px;
+      line-height: 1;
+      padding-top: 4px;
+      position: absolute;
+      top: 100%;
+      left: 0;
+    }
+  }
+
+  // 成功状态
+  &.is-success {
+    .ro-form-item__content {
+      .ro-input__inner,
+      .ro-select__inner,
+      .ro-textarea__inner {
+        border-color: #67c23a;
+      }
+    }
+  }
+
+  // 加载状态
+  &.is-loading {
+    .ro-form-item__content {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #409eff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+    }
+  }
+
+  // 不同尺寸的表单项
+  &.ro-form-item--small {
+    .ro-form-item__label {
+      line-height: 32px;
+      font-size: 13px;
+    }
+
+    .ro-form-item__content {
+      line-height: 32px;
+      font-size: 13px;
+    }
+  }
+
+  &.ro-form-item--large {
+    .ro-form-item__label {
+      line-height: 48px;
+      font-size: 15px;
+    }
+
+    .ro-form-item__content {
+      line-height: 48px;
+      font-size: 15px;
+    }
+  }
+}
+
+// 表单验证动画
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .ro-form {
+    &.ro-form--inline {
+      display: block;
+
+      .ro-form-item {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 16px;
+
+        .ro-form-item__label {
+          display: block;
+          text-align: left;
+          margin-bottom: 8px;
+          margin-right: 0;
+        }
+
+        .ro-form-item__content {
+          display: block;
+        }
+      }
+    }
+
+    .ro-form-item {
+      display: block;
+
+      .ro-form-item__label {
+        display: block;
+        text-align: left;
+        float: none;
+        margin-bottom: 8px;
+        padding-right: 0;
+      }
+
+      .ro-form-item__content {
+        display: block;
+        line-height: normal;
+      }
+    }
+  }
+}
+
+// 表单组样式（多个表单项组合）
+.ro-form-group {
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 22px;
+  background-color: #fafafa;
+
+  .ro-form-group__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #303133;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ebeef5;
+  }
+
+  .ro-form-item {
+    margin-bottom: 18px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// 暗色主题支持
+.ro-form.dark {
+  color: #c0c4cc;
+
+  .ro-form-item {
+    .ro-form-item__label {
+      color: #c0c4cc;
+    }
+  }
+
+  .ro-form-group {
+    border-color: #545b67;
+    background-color: #2d2f33;
+
+    .ro-form-group__title {
+      color: #c0c4cc;
+      border-bottom-color: #545b67;
+    }
+  }
+}

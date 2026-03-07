@@ -1,0 +1,320 @@
+/* Icon组件样式 - 仿照Element Plus设计 */
+.ro-icon {
+  --ro-icon-color: inherit;
+  --ro-icon-size: 16px;
+  --ro-icon-font-size: inherit;
+  --ro-icon-disabled-color: var(--ro-text-color-disabled);
+}
+
+/* 基础图标样式 */
+.ro-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  fill: currentColor;
+  color: var(--ro-icon-color);
+  font-size: var(--ro-icon-font-size);
+  //   width: var(--ro-icon-size);
+  //   height: var(--ro-icon-size);
+  line-height: 1;
+  vertical-align: middle;
+
+  /* 确保图标不会影响文本对齐 */
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
+/* 图标大小变体 */
+.ro-icon--small {
+  --ro-icon-size: 14px;
+  --ro-icon-font-size: 14px;
+}
+
+.ro-icon--medium {
+  --ro-icon-size: 16px;
+  --ro-icon-font-size: 16px;
+}
+
+.ro-icon--large {
+  --ro-icon-size: 20px;
+  --ro-icon-font-size: 20px;
+}
+
+.ro-icon--extra-large {
+  --ro-icon-size: 24px;
+  --ro-icon-font-size: 24px;
+}
+
+/* 图标颜色变体 */
+.ro-icon--primary {
+  --ro-icon-color: var(--ro-color-primary);
+}
+
+.ro-icon--success {
+  --ro-icon-color: var(--ro-color-success);
+}
+
+.ro-icon--warning {
+  --ro-icon-color: var(--ro-color-warning);
+}
+
+.ro-icon--danger {
+  --ro-icon-color: var(--ro-color-danger);
+}
+
+.ro-icon--info {
+  --ro-icon-color: var(--ro-color-info);
+}
+
+/* 禁用状态 */
+.ro-icon.is-disabled {
+  color: var(--ro-icon-disabled-color);
+  cursor: not-allowed;
+
+  &:hover {
+    color: var(--ro-icon-disabled-color);
+  }
+}
+
+/* 旋转动画 */
+.ro-icon.is-rotating {
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 脉冲动画 */
+.ro-icon.is-pulsing {
+  animation: pulsing 2s ease-in-out infinite;
+}
+
+@keyframes pulsing {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* 图标按钮样式 */
+.ro-icon-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  border-radius: var(--ro-border-radius-base);
+  cursor: pointer;
+  transition: all var(--ro-transition-duration-fast);
+  color: var(--ro-text-color-regular);
+
+  &:hover {
+    background-color: var(--ro-fill-color-light);
+    color: var(--ro-color-primary);
+  }
+
+  &:active {
+    background-color: var(--ro-fill-color);
+  }
+
+  &.is-disabled {
+    color: var(--ro-text-color-disabled);
+    cursor: not-allowed;
+    background: transparent;
+
+    &:hover {
+      background: transparent;
+      color: var(--ro-text-color-disabled);
+    }
+  }
+}
+
+.ro-icon-button--small {
+  width: 24px;
+  height: 24px;
+}
+
+.ro-icon-button--large {
+  width: 40px;
+  height: 40px;
+}
+
+/* 图标组合 */
+.ro-icon-group {
+  display: inline-flex;
+  align-items: center;
+
+  .ro-icon {
+    &:not(:first-child) {
+      margin-left: 4px;
+    }
+  }
+}
+
+.ro-icon-group--vertical {
+  flex-direction: column;
+
+  .ro-icon {
+    &:not(:first-child) {
+      margin-left: 0;
+      margin-top: 4px;
+    }
+  }
+}
+
+/* 加载状态图标 */
+.ro-icon-loading {
+  animation: rotating 1s linear infinite;
+}
+
+/* 特定图标样式 */
+.ro-icon--arrow-up::before {
+  content: '↑';
+}
+
+.ro-icon--arrow-down::before {
+  content: '↓';
+}
+
+.ro-icon--arrow-left::before {
+  content: '←';
+}
+
+.ro-icon--arrow-right::before {
+  content: '→';
+}
+
+.ro-icon--close::before {
+  content: '×';
+}
+
+.ro-icon--check::before {
+  content: '✓';
+}
+
+.ro-icon--plus::before {
+  content: '+';
+}
+
+.ro-icon--minus::before {
+  content: '−';
+}
+
+.ro-icon--search::before {
+  content: '🔍';
+}
+
+.ro-icon--setting::before {
+  content: '⚙';
+}
+
+.ro-icon--user::before {
+  content: '👤';
+}
+
+.ro-icon--home::before {
+  content: '🏠';
+}
+
+.ro-icon--star::before {
+  content: '★';
+}
+
+.ro-icon--heart::before {
+  content: '❤';
+}
+
+.ro-icon--info-circle::before {
+  content: 'ℹ';
+}
+
+.ro-icon--warning::before {
+  content: '⚠';
+}
+
+.ro-icon--error::before {
+  content: '❌';
+}
+
+.ro-icon--success::before {
+  content: '✅';
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .ro-icon {
+    --ro-icon-size: 14px;
+    --ro-icon-font-size: 14px;
+  }
+
+  .ro-icon--large {
+    --ro-icon-size: 18px;
+    --ro-icon-font-size: 18px;
+  }
+
+  .ro-icon--extra-large {
+    --ro-icon-size: 20px;
+    --ro-icon-font-size: 20px;
+  }
+}
+
+/* 焦点样式 */
+.ro-icon:focus {
+  outline: 2px solid var(--ro-color-primary-light-5);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* 可点击图标 */
+.ro-icon.is-clickable {
+  cursor: pointer;
+  transition: color var(--ro-transition-duration-fast);
+
+  &:hover {
+    color: var(--ro-color-primary);
+  }
+
+  &:active {
+    color: var(--ro-color-primary-dark-2);
+  }
+}
+
+/* 图标文字组合 */
+.ro-icon-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ro-icon-text--reverse {
+  flex-direction: row-reverse;
+}
+
+.ro-icon-text--vertical {
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ro-icon-text--vertical-reverse {
+  flex-direction: column-reverse;
+  gap: 2px;
+}
